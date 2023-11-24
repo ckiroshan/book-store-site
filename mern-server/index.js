@@ -32,11 +32,18 @@ async function run() {
 
     // Create a collection of documents
     const bookCollection = client.db("BookInventory").collection("books");
-    
+
     // Insert Book to Database
     app.post("/upload-book", async (req, res) => {
       const data = req.body;
       const result = await bookCollection.insertOne(data);
+      res.send(result);
+    });
+
+    // Get all books
+    app.get("/all-books", async (req, res) => {
+      const books = bookCollection.find();
+      const result = await books.toArray();
       res.send(result);
     });
 
@@ -49,7 +56,6 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
