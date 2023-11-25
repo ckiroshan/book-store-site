@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 
 // Database Configuration
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = "mongodb+srv://kane996:T4tSokeD6nZhxne2@ecommerce.beaha2q.mongodb.net/?retryWrites=true&w=majority";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -44,6 +44,23 @@ async function run() {
     app.get("/all-books", async (req, res) => {
       const books = bookCollection.find();
       const result = await books.toArray();
+      res.send(result);
+    });
+
+    // Update a book
+    app.patch("/books/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateBookData = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          ...updateBookData,
+        },
+      };
+
+      // update
+      const result = await bookCollection.updateOne(filter, updateDoc, options);
       res.send(result);
     });
 
