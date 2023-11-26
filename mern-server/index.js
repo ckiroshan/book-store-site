@@ -47,6 +47,14 @@ async function run() {
       res.send(result);
     });
 
+    // Get a book by id
+    app.get("/books/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const result = await bookCollection.findOne(filter);
+      res.send(result);
+    });
+
     // Update a book
     app.patch("/books/:id", async (req, res) => {
       const id = req.params.id;
@@ -69,7 +77,8 @@ async function run() {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const result = await bookCollection.deleteOne(filter);
-      res.send(result);``
+      res.send(result);
+      ``;
     });
 
     // Send a ping to confirm a successful connection
