@@ -9,29 +9,29 @@ import SingleBook from "../components/SingleBook";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
-    children:[
+    element: <App />,
+    children: [
       {
         path: "/",
-        element: <Home/>
+        element: <Home />,
       },
       {
         path: "/shop",
-        element: <Shop/>
+        element: <Shop />,
       },
       {
         path: "/blog",
-        element: <Blog/>
+        element: <Blog />,
       },
       {
         path: "/about",
-        element: <About/>
+        element: <About />,
       },
       {
         path: "/book/:id",
-        element: <SingleBook/>
-      }
-    ]
+        element: <SingleBook />,
+      },
+    ],
   },
 ]);
 
