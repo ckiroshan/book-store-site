@@ -48,7 +48,7 @@ function BookCards({ headline, books }) {
                 <img src={book.imageURL} alt="" />
               </div>
               <div>
-                <img src={book.bookTitle} alt="" />
+                <h3>{book.bookTitle}</h3>
               </div>
             </Link>
           </SwiperSlide>
