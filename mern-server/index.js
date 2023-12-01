@@ -34,7 +34,7 @@ async function run() {
     const bookCollection = client.db("BookInventory").collection("books");
 
     // Insert Book to Database
-    app.post("/upload-book", async (req, res) => {
+    app.post("/books", async (req, res) => {
       const data = req.body;
       const result = await bookCollection.insertOne(data);
       res.send(result);
@@ -56,7 +56,7 @@ async function run() {
     });
 
     // Get book by category
-    app.get("/all-books", async (req, res) => {
+    app.get("/books", async (req, res) => {
       let query = {};
       if(req.query?.category) {
         query = { category: req.query.category}
