@@ -5,7 +5,7 @@ function FavoriteBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:7000/all-books")
+    fetch("http://localhost:7000/books")
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);
