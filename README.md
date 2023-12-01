@@ -2,6 +2,8 @@
 
 Welcome to the Book Store Site project! This web application allows users to browse and purchase e-books online. The site includes user authentication, admin functionalities for CRUD operations, and integration with MongoDB for data storage.
 
+![preview img](/preview.png)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -53,7 +55,7 @@ To run the project locally, follow these steps:
    cd book-store
    ```
    
-3. Install dependencies:
+3. Install dependencies (On both sub-directories seperately): 
    
    ```bash
    npm install
@@ -69,10 +71,9 @@ To run the project locally, follow these steps:
 
 ## Project Structure
 
-- `client/`: Frontend codebase
-- `server/`: Backend codebase
-- `database/`: Database-related files
-- [Any other important directories or files.]
+- `mern-client/`: Frontend codebase
+- `mern-server/`: Backend codebase
+- `/`: Database-related files are stored in the MongoDB cloud
 
 ## Contributing
 
