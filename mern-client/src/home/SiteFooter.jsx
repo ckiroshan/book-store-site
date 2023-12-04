@@ -5,7 +5,7 @@ import { FaBlog } from "react-icons/fa6";
 
 function SiteFooter() {
   return (
-    <Footer container className="bg-gray-900">
+    <Footer container className="bg-gray-800">
       <div className="w-full px-4 lg:px-24 text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           {/* logo */}
@@ -20,7 +20,7 @@ function SiteFooter() {
             <Footer.Link href="#">Contact</Footer.Link>
           </Footer.LinkGroup>
         </div>
-        <Footer.Divider className="border-t border-gray-700" />
+        <Footer.Divider className="border-t border-gray-600" />
         <Footer.Copyright href="#" by="ckiroshan™" year={2023} />
       </div>
     </Footer>
