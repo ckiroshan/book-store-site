@@ -50,7 +50,7 @@ function UploadBook() {
   };
   return (
     <div className="px-4 my-12">
-      <h2 className="mb-8 text-3xl font-bold">UploadBook</h2>
+      <h2 className="mb-8 text-3xl font-bold">Upload Book</h2>
 
       <form onSubmit={handleBookSubmission} className="flex lg:w-[1180px] flex-col flex-wrap gap-4">
         {/* 1st Row */}
