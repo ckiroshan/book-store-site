@@ -18,7 +18,7 @@ function UploadBook() {
     const bookTitle = form.bookTitle.value;
     const authorName = form.authorName.value;
     const imageURL = form.imageURL.value;
-    const bookCategory = form.category.value;
+    const category = form.category.value;
     const bookDescription = form.bookDescription.value;
     const bookPDFURL = form.bookPDFURL.value;
 
@@ -26,7 +26,7 @@ function UploadBook() {
       bookTitle,
       authorName,
       imageURL,
-      bookCategory,
+      category,
       bookDescription,
       bookPDFURL,
     };
