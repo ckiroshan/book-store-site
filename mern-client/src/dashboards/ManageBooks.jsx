@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Table } from "flowbite-react";
 
 function ManageBooks() {
@@ -9,6 +10,23 @@ function ManageBooks() {
       .then((res) => res.json())
       .then((data) => setAllBooks(data));
   }, []);
+
+  // Delete book by ID
+  const handleDelete = (id) => {
+    const deletePrompt = window.confirm("Are you sure you want to delete this book?");
+
+    if (deletePrompt) {
+      console.log(id);
+      fetch(`http://localhost:7000/books/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Book deleted successfully");
+          window.location.reload();
+        });
+    }
+  };
 
   return (
     <div className="px-4 my-12">
@@ -35,9 +53,12 @@ function ManageBooks() {
               <Table.Cell>{book.category}</Table.Cell>
               <Table.Cell>$10</Table.Cell>
               <Table.Cell>
-                <a href="#" className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                  Edit
-                </a>
+                <Link to={`/admin/dashboard/edit/${book._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500 mr-3">
+                  <button className="bg-yellow-400 px-4 py-1 font-semibold text-white rounded-sm hover:bg-sky-600">Edit</button>
+                </Link>
+                <button onClick={() => handleDelete(book._id)} className="bg-red-600 px-4 py-1 font-semibold text-white rounded-sm hover:bg-sky-600">
+                  Delete
+                </button>
               </Table.Cell>
             </Table.Row>
           </Table.Body>
