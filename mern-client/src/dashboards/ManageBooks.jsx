@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Table } from "flowbite-react";
+import { Table, Pagination } from "flowbite-react";
 
 function ManageBooks() {
   const [allBooks, setAllBooks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 7;
 
   useEffect(() => {
     fetch("http://localhost:7000/books")
@@ -28,6 +30,15 @@ function ManageBooks() {
     }
   };
 
+  // Pagination
+  const totalPages = Math.ceil(allBooks.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, allBooks.length);
+  const currentBooks = allBooks.slice(startIndex, endIndex);
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="px-4 my-12">
       <h2 className="mb-8 text-3xl font-bold">Manage Books</h2>
@@ -44,10 +55,10 @@ function ManageBooks() {
             <span>Manage</span>
           </Table.HeadCell>
         </Table.Head>
-        {allBooks.map((book, index) => (
+        {currentBooks.map((book, index) => (
           <Table.Body className="divide-y" key={book._id}>
             <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{index + 1}</Table.Cell>
+              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{startIndex + index + 1}</Table.Cell>
               <Table.Cell>{book.bookTitle}</Table.Cell>
               <Table.Cell>{book.authorName}</Table.Cell>
               <Table.Cell>{book.category}</Table.Cell>
@@ -64,6 +75,10 @@ function ManageBooks() {
           </Table.Body>
         ))}
       </Table>
+      {/* Pagination */}
+      <div className="flex justify-center mt-4">
+        <Pagination layout="table" currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} showIcons />
+      </div>
     </div>
   );
 }
