@@ -1,10 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 function SignUp() {
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState("error");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -16,7 +21,8 @@ function SignUp() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        alert("Registration successful!")
+        alert("Registration successful!");
+        navigate(from,{replace:true})
         // ...
       })
       .catch((error) => {
