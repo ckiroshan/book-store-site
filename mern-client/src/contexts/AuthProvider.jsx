@@ -34,7 +34,8 @@ function AuthProvider({ children }) {
   const authInfo = {
     user,
     createUser,
-    loginWithGmail
+    loginWithGmail,
+    loading,
   };
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 }
