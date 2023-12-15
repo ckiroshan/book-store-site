@@ -30,7 +30,7 @@ function SideBar() {
           <Sidebar.Item href="#" icon={HiLogin}>
             Sign In
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiLogout}>
+          <Sidebar.Item href="/logout" icon={HiLogout}>
             Log Out
           </Sidebar.Item>
         </Sidebar.ItemGroup>
