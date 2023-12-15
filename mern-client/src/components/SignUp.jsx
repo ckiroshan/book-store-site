@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import googleLogo from "../assets/google-logo.svg";
 
 function SignUp() {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, loginWithGmail } = useContext(AuthContext);
   const [error, setError] = useState("error");
 
   const location = useLocation();
@@ -22,8 +23,25 @@ function SignUp() {
         // Signed up
         const user = userCredential.user;
         alert("Registration successful!");
-        navigate(from,{replace:true})
+        navigate(from, { replace: true });
         // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+        // ..
+      });
+  };
+
+  // Google account login
+
+  const handleRegister = () => {
+    loginWithGmail()
+      .then((result) => {
+        const user = result.user;
+        alert("Sign-up successful!");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -61,6 +79,13 @@ function SignUp() {
                   <button className="bg-blue-500 text-white rounded-md px-6 py-2">Register Account</button>
                 </div>
               </form>
+            </div>
+            <hr />
+            <div className="flex w-full items-center flex-col mt-5 gap-3">
+              <button onClick={handleRegister} className="block">
+                <img src={googleLogo} className="w-12 h-12 inline-block" alt="" />
+                Login with Google
+              </button>
             </div>
           </div>
         </div>
