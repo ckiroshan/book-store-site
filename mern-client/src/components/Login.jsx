@@ -5,7 +5,7 @@ import googleLogo from "../assets/google-logo.svg";
 
 const Login = () => {
   const { login, loginWithGmail } = useContext(AuthContext);
-  const [error, setError] = useState("error");
+  const [error, setError] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,12 +21,13 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        alert("Login Successful!")
+        alert("Login Successful!");
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorMessage);
       });
   };
 
@@ -63,6 +64,7 @@ const Login = () => {
                 <div className="relative">
                   <input id="password" name="password" type="password" className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" />
                 </div>
+                {error ? <p className="text-red-600">Email or Password is incorrect, try again!</p> : ""}
                 <p>
                   If you don't have an account, please{" "}
                   <Link to={"/sign-up"} className="text-blue-600 underline">
@@ -71,7 +73,7 @@ const Login = () => {
                   here
                 </p>
                 <div className="relative">
-                  <button className="bg-blue-500 text-white rounded-md px-6 py-2">Register Account</button>
+                  <button className="bg-blue-500 text-white rounded-md px-6 py-2">Login</button>
                 </div>
               </form>
             </div>
