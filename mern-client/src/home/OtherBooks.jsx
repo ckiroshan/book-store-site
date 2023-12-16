@@ -16,4 +16,4 @@ function OtherBooks() {
   );
 }
 
-export default OtherBooks
+export default OtherBooks;

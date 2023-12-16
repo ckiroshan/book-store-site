@@ -30,7 +30,9 @@ function FavoriteBooks() {
           </div>
         </div>
 
-        <Link to="/shop" className="mt-12 block"><button className="bg-blue-700 text-white font-semibold px-5 py-2 rounded hover:bg-black transition-all duration-300">Explore More</button></Link>
+        <Link to="/shop" className="mt-12 block">
+          <button className="bg-blue-700 text-white font-semibold px-5 py-2 rounded hover:bg-black transition-all duration-300">Explore More</button>
+        </Link>
       </div>
     </div>
   );

@@ -47,7 +47,6 @@ function EditBooks() {
         console.log(data);
         alert("Book updated successfully");
       });
-
   };
   return (
     <div className="px-4 my-12">
